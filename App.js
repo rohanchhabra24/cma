@@ -9,11 +9,24 @@ connectDB();
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "https://spyne-iy7cp2a2b-rohans-projects-f0b6a471.vercel.app/",
-  })
-);
+const whitelist = [
+  "https://spyne-iy7cp2a2b-rohans-projects-f0b6a471.vercel.app/",
+  "http://localhost:3000",
+];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 
 // Routes
