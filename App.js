@@ -10,7 +10,7 @@ connectDB();
 const app = express();
 
 const whitelist = [
-  "https://spyne-iy7cp2a2b-rohans-projects-f0b6a471.vercel.app/",
+  "https://spyne-iy7cp2a2b-rohans-projects-f0b6a471.vercel.app",
   "http://localhost:3000",
 ];
 const corsOptions = {
